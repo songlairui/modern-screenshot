@@ -87,6 +87,14 @@ export interface Options {
   ) => Promise<string | false>) | null
 
   /**
+   * Process url before executing contextFetch.
+   * 
+   * @param url The url to process
+   * @returns The processed url
+   */
+  processUrl?: ((url: string) => string) | null
+
+  /**
    * The options of fetch resources.
    */
   fetch?: {
@@ -121,6 +129,12 @@ export interface Options {
    * The options of fonts download and embed.
    */
   font?: false | {
+    /**
+     * Skip cors styleSheets
+     * default: false
+     */
+    skipCorsStyleSheets?: boolean
+
     /**
      * Font minify
      */

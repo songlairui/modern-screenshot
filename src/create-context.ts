@@ -49,7 +49,9 @@ export async function createContext<T extends Node>(node: T, options?: Options &
       ...options?.fetch,
     },
     fetchFn: null,
-    font: {},
+    font: {
+      skipCorsStyleSheets: false,
+    },
     drawImageInterval: 100,
     workerUrl: null,
     workerNumber,
@@ -58,6 +60,7 @@ export async function createContext<T extends Node>(node: T, options?: Options &
     onCreateForeignObjectSvg: null,
     includeStyleProperties: null,
     autoDestruct: false,
+    processUrl: null,
     ...options,
 
     // InternalContext

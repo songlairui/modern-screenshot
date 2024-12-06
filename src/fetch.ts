@@ -40,8 +40,7 @@ export function baseFetch<T = any>(options: BaseFetchOptions): Promise<T> {
 }
 
 export function contextFetch(context: Context, options: ContextFetchOptions): Promise<string> {
-  const { url: rawUrl, requestType = 'text', responseType = 'text', imageDom } = options
-  let url = rawUrl
+  const { url: urlFromOptions, requestType = 'text', responseType = 'text', imageDom } = options
 
   const {
     timeout,
@@ -53,10 +52,15 @@ export function contextFetch(context: Context, options: ContextFetchOptions): Pr
       bypassingCache,
       placeholderImage,
     },
+    processUrl: _presetProcessUrl,
     font,
     workers,
     fontFamilies,
   } = context
+
+  const rawUrl = _presetProcessUrl ? _presetProcessUrl(urlFromOptions) : urlFromOptions
+
+  let url = rawUrl
 
   if (requestType === 'image' && (IN_SAFARI || IN_FIREFOX)) {
     context.drawImageCount++

@@ -32,7 +32,7 @@ export async function imageToCanvas<T extends HTMLImageElement>(
         setTimeout(() => {
           drawImage()
           resolve()
-        }, i + drawImageInterval)
+        }, (i / 20) + drawImageInterval)
       })
     }
   }

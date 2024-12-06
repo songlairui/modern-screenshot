@@ -31,6 +31,10 @@ export async function embedWebFont<T extends Element>(
   else {
     const styleSheets = Array.from(ownerDocument.styleSheets).filter((styleSheet) => {
       try {
+        // If skipCorsStyleSheets is set, only traverse same-origin CSS
+        if (font && font.skipCorsStyleSheets && styleSheet.href && !styleSheet.href.startsWith(window.location.origin)) {
+          return false
+        }
         return 'cssRules' in styleSheet && Boolean(styleSheet.cssRules.length)
       }
       catch (error) {

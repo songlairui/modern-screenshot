@@ -1,3 +1,13 @@
+# @mtt/modern-screenshot
+
+> fork from [ modern-screenshot](https://github.com/qq15725/modern-screenshot)
+
+changes:
+
+- add skip cors styleSheets
+- add processUrl
+- fix drawImageInterval
+
 <h1 align="center">modern-screenshot</h1>
 
 <p align="center">
